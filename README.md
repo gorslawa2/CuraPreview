@@ -65,22 +65,35 @@ Or manually copy the `gcode_writer` folder.
 
 The plugin needs to be placed in Cura's plugin directory. The location varies by operating system:
 
-- **Windows**: `%APPDATA%\cura\5.x\plugins\`
+- **Windows**: `C:\Users\<username>\AppData\Roaming\cura\5.x\plugins\`
+  - Example for Cura 5.11: `C:\Users\username\AppData\Roaming\cura\5.11\plugins\SnapmakerPlugin\`
 - **macOS**: `~/Library/Application Support/cura/5.x/plugins/`
 - **Linux**: `~/.config/cura/5.x/plugins/`
 
 Replace `5.x` with your specific Cura version (e.g., `5.11`).
 
+**Note for Windows Users**: The `AppData` folder is hidden by default. To access it:
+1. Press `Win + R` to open the Run dialog
+2. Type `%APPDATA%\cura` and press Enter
+3. Navigate to your Cura version folder (e.g., `5.11`)
+4. Open or create the `plugins` folder
+
 ### Step 3: Install the Plugin
 
-1. Copy the `gcode_writer` folder into the plugins directory.
-2. Ensure the folder structure looks like this:
+1. Create a folder named `SnapmakerPlugin` inside the plugins directory.
+2. Copy the plugin files into this folder.
+3. Ensure the folder structure looks like this:
    ```
    plugins/
-   └── gcode_writer/
+   └── SnapmakerPlugin/
        ├── __init__.py
        ├── SnapmakerGCodeWriter.py
        └── config.py (if applicable)
+   ```
+   
+   **Full Windows Example Path**:
+   ```
+   C:\Users\username\AppData\Roaming\cura\5.11\plugins\SnapmakerPlugin\SnapmakerPlugin
    ```
 
 ### Step 4: Restart Cura
@@ -318,9 +331,27 @@ except Exception as e:
 3. Version incompatibility.
 
 **Solutions**:
-1. Verify the plugin is in the correct directory (see [Installation](#installation)).
-2. Check Cura's log file for error messages.
-3. Ensure you're using Cura 5.x (this plugin is not compatible with Cura 4.x).
+1. **Verify Installation Path**: 
+   - Windows: Ensure the plugin is at `C:\Users\<username>\AppData\Roaming\cura\5.11\plugins\SnapmakerPlugin\`
+   - macOS: Check `~/Library/Application Support/cura/5.11/plugins/SnapmakerPlugin/`
+   - Linux: Verify `~/.config/cura/5.11/plugins/SnapmakerPlugin/`
+   
+   The folder structure should be:
+   ```
+   SnapmakerPlugin/
+   ├── __init__.py
+   └── SnapmakerGCodeWriter.py
+   ```
+   
+2. **Check Cura's Log File**:
+   - Windows: `%APPDATA%\cura\5.11\cura.log`
+   - macOS: `~/Library/Logs/cura/cura.log`
+   - Linux: `~/.cache/cura/5.11/cura.log`
+   
+   Look for error messages related to "SnapmakerPlugin" or import errors.
+
+3. **Ensure Cura 5.x Compatibility**: This plugin is designed for Cura 5.x only (not compatible with Cura 4.x).
+4. **Restart Cura Completely**: Close all Cura instances and reopen.
 
 ---
 
@@ -345,7 +376,7 @@ This will append thumbnail generation status to a log file for troubleshooting.
 ## File Structure
 
 ```
-gcode_writer/
+SnapmakerPlugin/
 ├── __init__.py                    # Plugin initialization and registration
 ├── SnapmakerGCodeWriter.py        # Main G-code writer implementation
 ├── SnapmakerGCodeWriter_BACKUP.py # Backup of original file (for reference)
@@ -360,6 +391,23 @@ gcode_writer/
 - **`SnapmakerGCodeWriter.py`**: The core plugin file containing all the logic for writing G-code and generating thumbnails.
 - **`__init__.py`**: Registers the plugin with Cura and makes it discoverable.
 - **`editCode.md`**: Detailed documentation of the fixes applied (in Russian).
+
+### Installation Path Examples
+
+**Windows (Cura 5.11)**:
+```
+C:\Users\username\AppData\Roaming\cura\5.11\plugins\SnapmakerPlugin\
+```
+
+**macOS (Cura 5.11)**:
+```
+~/Library/Application Support/cura/5.11/plugins/SnapmakerPlugin/
+```
+
+**Linux (Cura 5.11)**:
+```
+~/.config/cura/5.11/plugins/SnapmakerPlugin/
+```
 
 ---
 
